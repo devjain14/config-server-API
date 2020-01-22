@@ -1,5 +1,5 @@
 
-package dk.digitalidentity.minimal.requestDto;
+package in.example.minimal.requestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @SuppressWarnings("unused")
-public class GET {
+public class Update {
 
     private String granularity;
     private String limit;

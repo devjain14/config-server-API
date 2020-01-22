@@ -1,6 +1,9 @@
-package dk.digitalidentity.minimal;
+package in.example.minimal;
 
-import dk.digitalidentity.minimal.requestDto.*;
+import in.example.minimal.requestDto.ApiLimit;
+import in.example.minimal.requestDto.ApiLimitConfigList;
+import in.example.minimal.requestDto.Config;
+import in.example.minimal.requestDto.Methods;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.jooq.tools.StringUtils;
 import org.springframework.http.HttpStatus;

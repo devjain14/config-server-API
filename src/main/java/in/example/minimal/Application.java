@@ -1,4 +1,4 @@
-package dk.digitalidentity.minimal;
+package in.example.minimal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

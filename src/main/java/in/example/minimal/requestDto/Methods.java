@@ -1,5 +1,5 @@
 
-package dk.digitalidentity.minimal.requestDto;
+package in.example.minimal.requestDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

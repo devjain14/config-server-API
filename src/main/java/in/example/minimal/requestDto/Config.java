@@ -1,5 +1,5 @@
 
-package dk.digitalidentity.minimal.requestDto;
+package in.example.minimal.requestDto;
 
 import java.util.List;
 import lombok.AllArgsConstructor;

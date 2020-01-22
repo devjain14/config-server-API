@@ -1,7 +1,6 @@
 
-package dk.digitalidentity.minimal.requestDto;
+package in.example.minimal.requestDto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @SuppressWarnings("unused")
-public class ApiLimitConfigList {
-    private List<Config> config;
+public class GlobalLimits {
+
+    private GET get;
+    private Post post;
+
 }
