@@ -1,0 +1,182 @@
+diff --git a/pom.xml b/pom.xml
+index 9dab7b8..f2fa07d 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -3,7 +3,7 @@
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+ 
+-    <groupId>dk.digitalidentity</groupId>
++    <groupId>in.example</groupId>
+     <artifactId>minimal</artifactId>
+     <version>1.0.0</version>
+ 
+diff --git a/src/main/java/dk/digitalidentity/minimal/APILimitController.java b/src/main/java/in/example/minimal/APILimitController.java
+similarity index 86%
+rename from src/main/java/dk/digitalidentity/minimal/APILimitController.java
+rename to src/main/java/in/example/minimal/APILimitController.java
+index 3a1b1b1..dca2d4d 100644
+--- a/src/main/java/dk/digitalidentity/minimal/APILimitController.java
++++ b/src/main/java/in/example/minimal/APILimitController.java
+@@ -1,6 +1,9 @@
+-package dk.digitalidentity.minimal;
++package in.example.minimal;
+ 
+-import dk.digitalidentity.minimal.requestDto.*;
++import in.example.minimal.requestDto.ApiLimit;
++import in.example.minimal.requestDto.ApiLimitConfigList;
++import in.example.minimal.requestDto.Config;
++import in.example.minimal.requestDto.Methods;
+ import org.apache.commons.configuration.PropertiesConfiguration;
+ import org.jooq.tools.StringUtils;
+ import org.springframework.http.HttpStatus;
+@@ -18,7 +21,7 @@ public class APILimitController {
+         List<Config> configList = apiLimitConfigList.getConfig();
+         for (Config config: configList) {
+             String serviceName = config.getService();
+-            String configFilePath = StringUtils.replace("/home/abhay/spring-boot-minimal/src/main/java/dk/digitalidentity/minimal/configurationfiles/{serviceName}.properties", "{serviceName}", serviceName);
++            String configFilePath = StringUtils.replace("/home/abhay/spring-boot-minimal/src/main/java/in/example/minimal/configurationfiles/{serviceName}.properties", "{serviceName}", serviceName);
+             PropertiesConfiguration configFile = new PropertiesConfiguration(configFilePath);
+ 
+             configFile.setProperty("globalLimits.get.limit", config.getGlobalLimits().getGet().getLimit());
+diff --git a/src/main/java/dk/digitalidentity/minimal/Application.java b/src/main/java/in/example/minimal/Application.java
+similarity index 80%
+rename from src/main/java/dk/digitalidentity/minimal/Application.java
+rename to src/main/java/in/example/minimal/Application.java
+index 3eab11f..1bce866 100644
+--- a/src/main/java/dk/digitalidentity/minimal/Application.java
++++ b/src/main/java/in/example/minimal/Application.java
+@@ -1,11 +1,11 @@
+-package dk.digitalidentity.minimal;
++package in.example.minimal;
+ 
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
+ import org.springframework.context.annotation.ComponentScan;
+ 
+ @SpringBootApplication
+-@ComponentScan({"dk.digitalidentity.*"})
++@ComponentScan({"in.example.*"})
+ public class Application {
+ 	public static void main(String[] args) {
+ 		SpringApplication.run(Application.class, args);
+diff --git a/src/main/java/dk/digitalidentity/minimal/configurationfiles/pixelService.properties b/src/main/java/in/example/minimal/configurationfiles/pixelService.properties
+similarity index 100%
+rename from src/main/java/dk/digitalidentity/minimal/configurationfiles/pixelService.properties
+rename to src/main/java/in/example/minimal/configurationfiles/pixelService.properties
+diff --git a/src/main/java/dk/digitalidentity/minimal/configurationfiles/serviceTwo.properties b/src/main/java/in/example/minimal/configurationfiles/serviceTwo.properties
+similarity index 100%
+rename from src/main/java/dk/digitalidentity/minimal/configurationfiles/serviceTwo.properties
+rename to src/main/java/in/example/minimal/configurationfiles/serviceTwo.properties
+diff --git a/src/main/java/dk/digitalidentity/minimal/requestDto/ApiLimit.java b/src/main/java/in/example/minimal/requestDto/ApiLimit.java
+similarity index 85%
+rename from src/main/java/dk/digitalidentity/minimal/requestDto/ApiLimit.java
+rename to src/main/java/in/example/minimal/requestDto/ApiLimit.java
+index 236a3ec..c078a88 100644
+--- a/src/main/java/dk/digitalidentity/minimal/requestDto/ApiLimit.java
++++ b/src/main/java/in/example/minimal/requestDto/ApiLimit.java
+@@ -1,5 +1,5 @@
+ 
+-package dk.digitalidentity.minimal.requestDto;
++package in.example.minimal.requestDto;
+ 
+ import lombok.AllArgsConstructor;
+ import lombok.Builder;
+diff --git a/src/main/java/dk/digitalidentity/minimal/requestDto/ApiLimitConfigList.java b/src/main/java/in/example/minimal/requestDto/ApiLimitConfigList.java
+similarity index 85%
+rename from src/main/java/dk/digitalidentity/minimal/requestDto/ApiLimitConfigList.java
+rename to src/main/java/in/example/minimal/requestDto/ApiLimitConfigList.java
+index df5c233..b90390a 100644
+--- a/src/main/java/dk/digitalidentity/minimal/requestDto/ApiLimitConfigList.java
++++ b/src/main/java/in/example/minimal/requestDto/ApiLimitConfigList.java
+@@ -1,5 +1,5 @@
+ 
+-package dk.digitalidentity.minimal.requestDto;
++package in.example.minimal.requestDto;
+ 
+ import java.util.List;
+ import lombok.AllArgsConstructor;
+diff --git a/src/main/java/dk/digitalidentity/minimal/requestDto/Config.java b/src/main/java/in/example/minimal/requestDto/Config.java
+similarity index 89%
+rename from src/main/java/dk/digitalidentity/minimal/requestDto/Config.java
+rename to src/main/java/in/example/minimal/requestDto/Config.java
+index c6a3bb8..f886eee 100644
+--- a/src/main/java/dk/digitalidentity/minimal/requestDto/Config.java
++++ b/src/main/java/in/example/minimal/requestDto/Config.java
+@@ -1,5 +1,5 @@
+ 
+-package dk.digitalidentity.minimal.requestDto;
++package in.example.minimal.requestDto;
+ 
+ import java.util.List;
+ import lombok.AllArgsConstructor;
+diff --git a/src/main/java/dk/digitalidentity/minimal/requestDto/GET.java b/src/main/java/in/example/minimal/requestDto/GET.java
+similarity index 85%
+rename from src/main/java/dk/digitalidentity/minimal/requestDto/GET.java
+rename to src/main/java/in/example/minimal/requestDto/GET.java
+index 3407860..1cd4021 100644
+--- a/src/main/java/dk/digitalidentity/minimal/requestDto/GET.java
++++ b/src/main/java/in/example/minimal/requestDto/GET.java
+@@ -1,5 +1,5 @@
+ 
+-package dk.digitalidentity.minimal.requestDto;
++package in.example.minimal.requestDto;
+ 
+ import lombok.AllArgsConstructor;
+ import lombok.Builder;
+diff --git a/src/main/java/dk/digitalidentity/minimal/requestDto/GlobalLimits.java b/src/main/java/in/example/minimal/requestDto/GlobalLimits.java
+similarity index 85%
+rename from src/main/java/dk/digitalidentity/minimal/requestDto/GlobalLimits.java
+rename to src/main/java/in/example/minimal/requestDto/GlobalLimits.java
+index 1fce933..d13e50d 100644
+--- a/src/main/java/dk/digitalidentity/minimal/requestDto/GlobalLimits.java
++++ b/src/main/java/in/example/minimal/requestDto/GlobalLimits.java
+@@ -1,5 +1,5 @@
+ 
+-package dk.digitalidentity.minimal.requestDto;
++package in.example.minimal.requestDto;
+ 
+ import lombok.AllArgsConstructor;
+ import lombok.Builder;
+diff --git a/src/main/java/dk/digitalidentity/minimal/requestDto/Methods.java b/src/main/java/in/example/minimal/requestDto/Methods.java
+similarity index 86%
+rename from src/main/java/dk/digitalidentity/minimal/requestDto/Methods.java
+rename to src/main/java/in/example/minimal/requestDto/Methods.java
+index 04b2188..196813a 100644
+--- a/src/main/java/dk/digitalidentity/minimal/requestDto/Methods.java
++++ b/src/main/java/in/example/minimal/requestDto/Methods.java
+@@ -1,5 +1,5 @@
+ 
+-package dk.digitalidentity.minimal.requestDto;
++package in.example.minimal.requestDto;
+ 
+ import lombok.AllArgsConstructor;
+ import lombok.Builder;
+diff --git a/src/main/java/dk/digitalidentity/minimal/requestDto/Post.java b/src/main/java/in/example/minimal/requestDto/Post.java
+similarity index 85%
+rename from src/main/java/dk/digitalidentity/minimal/requestDto/Post.java
+rename to src/main/java/in/example/minimal/requestDto/Post.java
+index ab88d12..8ef10ac 100644
+--- a/src/main/java/dk/digitalidentity/minimal/requestDto/Post.java
++++ b/src/main/java/in/example/minimal/requestDto/Post.java
+@@ -1,5 +1,5 @@
+ 
+-package dk.digitalidentity.minimal.requestDto;
++package in.example.minimal.requestDto;
+ 
+ import lombok.AllArgsConstructor;
+ import lombok.Builder;
+diff --git a/src/main/java/dk/digitalidentity/minimal/requestDto/Update.java b/src/main/java/in/example/minimal/requestDto/Update.java
+similarity index 85%
+rename from src/main/java/dk/digitalidentity/minimal/requestDto/Update.java
+rename to src/main/java/in/example/minimal/requestDto/Update.java
+index 70ae709..93f327b 100644
+--- a/src/main/java/dk/digitalidentity/minimal/requestDto/Update.java
++++ b/src/main/java/in/example/minimal/requestDto/Update.java
+@@ -1,5 +1,5 @@
+ 
+-package dk.digitalidentity.minimal.requestDto;
++package in.example.minimal.requestDto;
+ 
+ import lombok.AllArgsConstructor;
+ import lombok.Builder;

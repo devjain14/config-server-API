@@ -21,7 +21,7 @@ public class APILimitController {
         List<Config> configList = apiLimitConfigList.getConfig();
         for (Config config: configList) {
             String serviceName = config.getService();
-            String configFilePath = StringUtils.replace("/home/abhay/spring-boot-minimal/src/main/java/dk/digitalidentity/minimal/configurationfiles/{serviceName}.properties", "{serviceName}", serviceName);
+            String configFilePath = StringUtils.replace("src/main/java/in/example/minimal/configurationfiles/{serviceName}.properties", "{serviceName}", serviceName);
             PropertiesConfiguration configFile = new PropertiesConfiguration(configFilePath);
 
             configFile.setProperty("globalLimits.get.limit", config.getGlobalLimits().getGet().getLimit());
